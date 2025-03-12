@@ -1,11 +1,11 @@
 #!/bin/bash
 #Para ter informações do processado :  fabricante, nome do computador, velocidade,numeros de nucleos e arquitetura...
-fabri_can=$(lscpu | grep "Vendor ID" | awk -F: '{print $2}' | xargs)
+fabri_can=$(lscpu | grep "Vendor ID" | awk -F: '{print $2}' | xargs) #grep "Vendor ID":filtra a saída do lscpu para encontrar a linha que contém "Vendor ID".
 velo_cid=$(cat /proc/cpuinfo | grep "cpu MHz" | awk -F: '{print $2}')
 nu_cle=$(lscpu | grep "CPU(s):" | awk -F: '{print $2}' | xargs)
-ar_te=$(lscpu | grep "Architecture" | awk -F: '{print $2}' | xargs) #xargs remove espaçços deesnecessarios  
+ar_te=$(lscpu | grep "Architecture" | awk -F: '{print $2}' | xargs) #xargs remove espaços desnecessários... 
 ram=$(free -m | grep Men | awk '{print $2}') #informações da memoria ram livre  
-interface=$(ip route | grep default | awk '{print $5}')
+interface=$(ip route | grep default | awk '{print $5}') #
 ip=$(ip -o -f inet addr show enp0s3 | awk '{print $4}')
 mask=$(ifconfig enp0s3 | awk '/netmask/ {print $4}')
 mac=$(usr/sbin/ip link show $i| awk '/ether/ {print $2}')
